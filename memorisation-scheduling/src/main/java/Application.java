@@ -1,5 +1,10 @@
 import input.Input;
 import input.InputReader;
+import output.Day;
+import output.Output;
+import output.OutputWriter;
+
+import java.util.List;
 
 public class Application {
     static void main(String[] args) {
@@ -14,5 +19,12 @@ public class Application {
         Input input = InputReader.read(inputFilename);
 
         System.out.println(input);
+
+        Output dummyOutput = new Output(List.of(
+                new Day("Matthew 1-4", 14),
+                new Day("Matthew 5-7", 57)
+        ));
+
+        OutputWriter.write(dummyOutput, outputFilename);
     }
 }
