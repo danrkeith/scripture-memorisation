@@ -1,30 +1,31 @@
-import input.Input;
-import input.InputReader;
-import output.Day;
-import output.Output;
-import output.OutputWriter;
-
-import java.util.List;
+import model.MemorisationSpec;
+import model.Plan;
 
 public class Application {
-    static void main(String[] args) {
-        if (args.length != 2) {
-            System.err.println("Usage: java -jar memorisation-scheduling <input.json> <output.json>");
+
+    public static void main(String[] args) {
+        if (args.length < 2) {
+            System.err.println("Usage: java -jar memorisation.jar <input.json> <output.json>");
             System.exit(1);
         }
 
         String inputFilename = args[0];
         String outputFilename = args[1];
 
-        Input input = InputReader.read(inputFilename);
+        MemorisationSpec memorisationSpec = InputReader.read(inputFilename);
 
-        System.out.println(input);
+        Plan plan = buildPlan(memorisationSpec);
 
-        Output dummyOutput = new Output(List.of(
-                new Day("Matthew 1-4", 14),
-                new Day("Matthew 5-7", 57)
-        ));
+        OutputWriter.write(plan, outputFilename);
+        System.out.println(plan);
+    }
 
-        OutputWriter.write(dummyOutput, outputFilename);
+    private static Plan buildPlan(MemorisationSpec memorisationSpec) {
+        int maxVersesPerDay = PlanOptimiser.minMaxVersesPerDay(memorisationSpec.getBooks(), memorisationSpec.getDays());
+
+        Plan plan = PlanBuilder.buildFromBooks(memorisationSpec.getBooks(), maxVersesPerDay);
+        PlanBuilder.addPsalmsToPlan(plan, memorisationSpec.getPsalms());
+
+        return plan;
     }
 }
