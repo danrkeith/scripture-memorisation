@@ -36,15 +36,16 @@ public class ChapterGroup implements Passage {
     }
 
     @Override
-    public String toString() {
-        if (chapters.isEmpty()) {
-            return null;
-        }
-
+    public String getName() {
         String chaptersStr = chapters.getFirst().getChapter() + (
                 chapters.size() == 1 ? "" : "-" + chapters.getLast().getChapter()
         );
 
-        return bookTitle + " " + chaptersStr + " (" + getVerses() + " verses)";
+        return bookTitle + " " + chaptersStr;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " (" + getVerses() + " verses)";
     }
 }

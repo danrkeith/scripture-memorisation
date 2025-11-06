@@ -23,19 +23,17 @@ public class Day {
     }
 
     public String getPassages() {
-        return toString();
+        List<Passage> passages = new ArrayList<>();
+        passages.add(mainPassage);
+        passages.addAll(psalms);
+        return passages.stream().map(Passage::getName).collect(Collectors.joining(", "));
     }
 
     @Override
     public String toString() {
-        String str = mainPassage.toString();
-
-        if (!psalms.isEmpty()) {
-            str += ", " + psalms.stream()
-                    .map(Psalm::toString)
-                    .collect(Collectors.joining(", "));
-        }
-
-        return str;
+        List<Passage> passages = new ArrayList<>();
+        passages.add(mainPassage);
+        passages.addAll(psalms);
+        return passages.stream().map(Passage::toString).collect(Collectors.joining(", "));
     }
 }

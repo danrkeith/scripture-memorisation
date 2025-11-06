@@ -19,6 +19,7 @@ public class Book implements Passage {
     }
 
     public void setChapters(List<Chapter> chapters) {
+        chapters.forEach(chapter -> chapter.setBookTitle(title));
         this.chapters = chapters;
     }
 
@@ -76,12 +77,18 @@ public class Book implements Passage {
         return null;
     }
 
+    @Override
     public int getVerses() {
         return chapters.stream().mapToInt(Chapter::getVerses).sum();
     }
 
     @Override
+    public String getName() {
+        return title;
+    }
+
+    @Override
     public String toString() {
-        return title + " (" + getVerses() + " verses)";
+        return getName() + " (" + getVerses() + " verses)";
     }
 }
