@@ -19,8 +19,8 @@ struct Schedule: Codable {
 
 func main() {
     // Run scheduling
-    guard let basePath: String = ProcessInfo.processInfo.environment["REPO_PATH"] else {
-        print("No REPO_PATH env. variable")
+    guard let basePath: String = ProcessInfo.processInfo.environment["SM_REPO_PATH"] else {
+        print("No SM_REPO_PATH env. variable")
         exit(1)
     }
     

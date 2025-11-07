@@ -53,7 +53,7 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "REPO_PATH"
+            key = "SM_REPO_PATH"
             value = "/Users/danielrkeith/repos/scripture-memorisation"
             isEnabled = "YES">
          </EnvironmentVariable>
