@@ -137,6 +137,10 @@ func main() {
         let dueComps = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: dueDate)
         reminder.dueDateComponents = dueComps
 
+        // Add notification
+        let alarm = EKAlarm(relativeOffset: 0)
+        reminder.addAlarm(alarm)
+        
         // Recurrence rule: repeat every totalDays days
         if totalDays > 1 {
             let rule = EKRecurrenceRule(recurrenceWith: .daily, interval: totalDays, end: nil)
